@@ -5,14 +5,16 @@ def addbook():    #도서추가 함수 정의
      print('해당 도서가 추가되었습니다.')
 
 def searchbook():   #도서검색 함수 정의
-    import glob
-    import re
+    b = int(input('검색할 방법을 숫자로 입력하세요. \n1.전체검색\n2.개별검색:'))
+    if b == 1:
+     import glob
+     import re
 
-    s = input('검색할 단어를 입력하세요. : ')
+     s = input('검색할 단어를 입력하세요. : ')
 
-    p = re.compile(s)
+     p = re.compile(s)
 
-    for i in glob.glob(r'C:/파이썬/input.txt'):
+     for i in glob.glob(r'C:/파이썬/input.txt'):
         with open(i, 'r') as f:
            for x, y in enumerate(f.readlines(),1):
                m = p.findall(y)
@@ -20,10 +22,9 @@ def searchbook():   #도서검색 함수 정의
                 print('검색명 : %s' %(m))
                 print('해당 도서 정보 : %s' %y)
            print()
-
-def indsearchbook():   #도서개별검색 함수 정의
-    with open("C:/파이썬/input.txt","r") as file:
-        a = int(input("검색할 분야 숫자를 입력하시오. \n1.도서명\n2.저자\n3.출판연도\n4.출판사명\n5.장르\n : "))
+    elif b == 2:
+     with open("C:/파이썬/input.txt","r") as file:
+        a = int(input("검색할 분야의 숫자를 입력하시오. \n1.도서명\n2.저자\n3.출판연도\n4.출판사명\n5.장르\n : "))
         while True:
             line = file.readline()
             if not line:
@@ -41,6 +42,8 @@ def indsearchbook():   #도서개별검색 함수 정의
                 print(list[4])
             else:
                 print("잘못 입력하셨습니다.")
+    else:
+        print("잘못 입력하셨습니다.")                    
 
 def correctbook():  #도서수정 함수 정의
     viewall()
