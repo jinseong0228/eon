@@ -3,6 +3,7 @@ def addbook():    #도서추가 함수 정의
     with open("C:/파이썬/input.txt","a") as file:
      file.write('\n'+ a)
      print('해당 도서가 추가되었습니다.')
+
 def searchbook():   #도서검색 함수 정의
     import glob
     import re
@@ -19,6 +20,28 @@ def searchbook():   #도서검색 함수 정의
                 print('검색명 : %s' %(m))
                 print('해당 도서 정보 : %s' %y)
            print()
+
+def indsearchbook():   #도서개별검색 함수 정의
+    with open("C:/파이썬/input.txt","r") as file:
+        a = int(input("검색할 분야 숫자를 입력하시오. \n1.도서명\n2.저자\n3.출판연도\n4.출판사명\n5.장르\n : "))
+        while True:
+            line = file.readline()
+            if not line:
+                break
+            list = line.split(" ")
+            if a == 1:
+                print(list[0])
+            elif a == 2:
+                print(list[1])
+            elif a == 3:
+                print(list[2])
+            elif a == 4:
+                print(list[3])
+            elif a == 5:
+                print(list[4])
+            else:
+                print("잘못 입력하셨습니다.")
+
 def correctbook():  #도서수정 함수 정의
     viewall()
     new_text_content = ''
@@ -36,6 +59,7 @@ def correctbook():  #도서수정 함수 정의
     with open('C:/파이썬/input.txt','w') as file:
         file.write(new_text_content)
     print('변경되었습니다.')
+
 def removebook():   #도서삭제 함수 정의
     with open("C:/파이썬/input.txt", "r") as infile:
          lines = infile.readlines()
@@ -46,6 +70,7 @@ def removebook():   #도서삭제 함수 정의
         if pos != c-1:
             outfile.write(line)  
     print('삭제되었습니다.')
+
 def viewall():    #도서전체보기 함수 정의
     with open("C:/파이썬/input.txt", "r") as file:
       line_num = 1
@@ -54,4 +79,3 @@ def viewall():    #도서전체보기 함수 정의
         print('%d. %s' %(line_num, line))
         line = file.readline()
         line_num += 1   
-        
